@@ -1,0 +1,17 @@
+node_modules
+*.log*
+.nuxt
+.nitro
+.env
+.cache
+.output
+dist
+settings.json
+.DS_Store
+.idea
+/.env
+./.env
+
+yarn.lock
+pnpm-lock.yaml
+/yarn.lock
