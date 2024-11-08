@@ -1,69 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { computed } from 'vue';
-import { useTheme } from 'vuetify';
-const theme = useTheme();
-const indigo = theme.current.value.colors.indigo;
-
-
-/* Chart */
-const areachartOptions = computed(() => {
-    return {
-        chart: {
-            id: "sparkline3",
-            type: "area",
-            height: 60,
-            sparkline: {
-                enabled: true,
-            },
-            group: "sparklines",
-            fontFamily:'inherit',
-            foreColor: "#adb0bb",
-        },
-        series: [
-            {
-                name: "Earnings",
-                color: "#8763da",
-                data: [25, 66, 20, 40, 12, 58, 20],
-            },
-        ],
-        stroke: {
-            curve: "smooth",
-            width: 2,
-        },
-        fill: {
-            colors: ["#f3feff"],
-            type: "solid",
-            opacity: 0.05,
-        },
-
-        markers: {
-            size: 0,
-        },
-        tooltip: {
-            theme: "dark",
-            fixed: {
-                enabled: true,
-                position: "right",
-            },
-            x: {
-                show: false,
-            },
-        },
-    };
-});
-
-const areaChart = {
-    series: [
-        {
-            name: '',
-            data: [25, 66, 20, 40, 12, 58, 20]
-        }
-    ]
-};
 </script>
 <template>
-    <v-card elevation="10" class="withbg">
+    <v-card elevation="10" class="withbg h-100">
         <v-card-item class="pa-6">
             <div class="d-flex align-center justify-space-between pt-sm-2">
                 <v-card-title class="text-h5">Product Sales</v-card-title>
@@ -88,10 +26,5 @@ const areaChart = {
                 </v-col>
             </v-row>
         </v-card-item>
-        <div class="mt-3">
-          <ClientOnly>
-            <apexchart type="area" height="60" :options="areachartOptions" :series="areaChart.series"> </apexchart>
-          </ClientOnly>
-        </div>
     </v-card>
 </template>

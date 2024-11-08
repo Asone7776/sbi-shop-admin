@@ -3,10 +3,8 @@
     <v-app>
       <LayoutMain/>
       <v-main>
-        <v-container fluid class="page-wrapper bg-background px-sm-5 px-4 pt-12 rounded-xl">
-          <div class="maxWidth">
+        <v-container fluid class="page-wrapper bg-background px-sm-5 px-4 rounded-lg">
             <slot/>
-          </div>
         </v-container>
       </v-main>
     </v-app>

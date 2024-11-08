@@ -1,9 +1,5 @@
 import {
-    LayoutDashboardIcon, BorderAllIcon,
-    AlertCircleIcon,
-    CircleDotIcon,
-    BoxMultiple1Icon,
-    LoginIcon, MoodHappyIcon, ApertureIcon, UserPlusIcon
+    UsersIcon
 } from 'vue-tabler-icons';
 
 export interface menu {
@@ -24,27 +20,18 @@ export interface menu {
 }
 
 const sidebarItem: menu[] = [
-    {header: 'ui'},
+    // {header: 'ui'},
     {
-        title: "Alert",
-        icon: AlertCircleIcon,
-        to: "/admin/ui-components/alerts",
+        title: "Пользователи",
+        icon: UsersIcon,
+        to: "/admin/users",
 
     },
     {
-        title: "Button",
-        icon: CircleDotIcon,
-        to: "/admin/ui-components/buttons",
-    },
-    {
-        title: "Cards",
-        icon: BoxMultiple1Icon,
-        to: "/admin/ui-components/cards",
-    },
-    {
-        title: "Tables",
-        icon: BorderAllIcon,
-        to: "/admin/ui-components/tables",
+        title: "Бренды",
+        icon: UsersIcon,
+        to: "/admin/brands",
+
     },
 
 ];

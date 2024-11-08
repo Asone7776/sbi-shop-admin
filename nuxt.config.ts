@@ -10,7 +10,7 @@ export default defineNuxtConfig({
             redirect: "/admin",
         },
         '/api/**': {
-            proxy: { to: "http://localhost:8888/api/**", },
+            proxy: {to: "http://localhost:8888/api/**",},
         }
     },
     app: {
@@ -27,6 +27,14 @@ export default defineNuxtConfig({
     },
     build: {
         transpile: ['vuetify'],
+    },
+    components: {
+        dirs: [
+            {
+                path: "~/components",
+                global: true,
+            },
+        ],
     },
     nitro: {
         serveStatic: true,

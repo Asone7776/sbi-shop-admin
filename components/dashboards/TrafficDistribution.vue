@@ -1,76 +1,10 @@
 <script setup lang="ts">
-import {computed} from 'vue';
 import {useTheme} from 'vuetify';
 
 const theme = useTheme();
-const primary = theme.current.value.colors.primary;
-const lightprimary = theme.current.value.colors.lightprimary;
-const chartOptions = computed(() => {
-  return {
-    series: [5368, 3500, 4106],
-    labels: ["5368", "Refferal Traffic", "Oragnic Traffic"],
-    chart: {
-      height: 170,
-      type: "donut",
-      fontFamily: "Plus Jakarta Sans', sans-serif",
-      foreColor: "#c6d1e9",
-    },
-
-    tooltip: {
-      theme: "dark",
-      fillSeriesColor: false,
-    },
-
-    colors: ["#e7ecf0", "#fb977d", primary],
-    dataLabels: {
-      enabled: false,
-    },
-
-    legend: {
-      show: false,
-    },
-
-    stroke: {
-      show: false,
-    },
-    responsive: [
-      {
-        breakpoint: 991,
-        options: {
-          chart: {
-            width: 150,
-          },
-        },
-      },
-    ],
-    plotOptions: {
-      pie: {
-        donut: {
-          size: '80%',
-          background: "none",
-          labels: {
-            show: true,
-            name: {
-              show: true,
-              fontSize: "12px",
-              color: undefined,
-              offsetY: 5,
-            },
-            value: {
-              show: false,
-              color: "#98aab4",
-            },
-          },
-        },
-      },
-    },
-
-  };
-});
-const Chart = [38, 40, 25];
 </script>
 <template>
-  <v-card elevation="10" class="withbg pa-3">
+  <v-card elevation="10" class="withbg pa-3 h-100">
     <v-card-item>
       <div class="d-sm-flex align-center justify-space-between pt-sm-2">
         <v-card-title class="text-h5">Traffic Distribution</v-card-title>
@@ -97,14 +31,6 @@ const Chart = [38, 40, 25];
                 Refferal
               </h6>
             </div>
-          </div>
-        </v-col>
-        <v-col cols="6" sm="5" class="pl-lg-0">
-          <div class="d-flex align-center flex-shrink-0">
-            <ClientOnly>
-              <apexchart type="donut" height="170" :options="chartOptions" :series="Chart">
-              </apexchart>
-            </ClientOnly>
           </div>
         </v-col>
       </v-row>

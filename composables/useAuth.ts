@@ -54,7 +54,6 @@ export const useAuth = () => {
                 }
             }
         } else {
-            console.log(data);
             if (data?.access_token) {
                 const {access_token} = data;
                 token.value = access_token;
