@@ -5,7 +5,6 @@
 import {type ListProps} from "~/types/list";
 import {Models} from "~/types/models";
 
-const {t} = useI18n();
 const model = reactive<ListProps>({
   model: Models.user,
   has_search: true,
@@ -13,8 +12,14 @@ const model = reactive<ListProps>({
   table: {
     headers: [
       {
+        title: 'ID',
+        align: "start",
+        sortable: false,
+        key: 'id',
+      },
+      {
         title: 'Имя',
-        align: 'start',
+        align: "start",
         sortable: false,
         key: 'first_name',
       },
@@ -42,11 +47,12 @@ const model = reactive<ListProps>({
         sortable: false,
         key: 'role',
       },
-    ],
-  }
+    ]
+  },
   // params: {
-  //   "statuses[]": [1],
-  // },
+  //   page: 1,
+  //   perPage: 2,
+  // }
   // headers: [
   //   {
   //     title: "",

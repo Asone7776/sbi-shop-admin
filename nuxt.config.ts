@@ -4,7 +4,6 @@ export default defineNuxtConfig({
     ssr: true,
     compatibilityDate: '2024-04-03',
     devtools: {enabled: true},
-    spaLoadingTemplate: 'spa-loading-template.html',
     routeRules: {
         "/": {
             redirect: "/admin",

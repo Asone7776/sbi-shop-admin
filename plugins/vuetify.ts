@@ -3,7 +3,7 @@ import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import VueTablerIcons from "vue-tabler-icons";
 import PerfectScrollbar from "vue3-perfect-scrollbar";
-import {createVuetify} from 'vuetify'
+import {createVuetify} from 'vuetify';
 import {
     BLUE_THEME,
 } from "@/theme/LightTheme";

@@ -6,6 +6,7 @@
     <v-navigation-drawer v-model="sDrawer"
                          left
                          floating
+                         permanent
     >
       <div class="pa-5 pl-4 ">
         <LayoutFullLogoDark/>
@@ -41,6 +42,6 @@ import {ref, shallowRef} from 'vue';
 import sidebarItems from '@/components/Layout/Full/vertical-sidebar/sidebarItem';
 
 const sidebarMenu = shallowRef(sidebarItems);
-const sDrawer = ref(false);
+const sDrawer = ref(true);
 
 </script>
