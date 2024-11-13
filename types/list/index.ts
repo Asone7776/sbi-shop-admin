@@ -1,5 +1,6 @@
 import type {TableProps} from "~/types/table";
 import type {Models} from "~/types/models";
+import type {FormFields} from "~/types/form";
 
 
 export type meta = {
@@ -22,5 +23,7 @@ export type ListProps = {
     table: TableProps,
     has_search?: boolean,
     has_add?: boolean,
+    has_refresh?: boolean,
     params?: Record<string, any>,
+    form_fields?: FormFields
 }

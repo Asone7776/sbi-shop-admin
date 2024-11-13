@@ -8,6 +8,10 @@ export function useAPI<T>(
         ...options,
         $fetch: useNuxtApp().$api,
         onResponseError: async (context) => {
+            if (context.response.status === 401) {
+                useNuxtApp().$signOut();
+            }
+
             setTimeout(() => {
                 exceptionMessage(context.response._data)
             }, 100);

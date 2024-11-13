@@ -4,6 +4,7 @@
 <script setup lang="ts">
 import {type ListProps} from "~/types/list";
 import {Models} from "~/types/models";
+import {FormTypes} from "~/types/form";
 
 const model = reactive<ListProps>({
   model: Models.user,
@@ -47,129 +48,32 @@ const model = reactive<ListProps>({
         sortable: false,
         key: 'role',
       },
-    ]
+    ],
+    pagination_options: [1, 5, 10],
   },
-  // params: {
-  //   page: 1,
-  //   perPage: 2,
-  // }
-  // headers: [
-  //   {
-  //     title: "",
-  //     key: "id",
-  //     sortable: false,
-  //     width: "0",
-  //     label: t("words.constants.details"),
-  //   },
-  //   {title: t("Имя"), key: "first_name", sortable: false},
-  //   {title: t("Фамилия"), key: "last_name", sortable: false},
-  //   {title: t("Email"), key: "email", sortable: false},
-  //   {
-  //     title: "",
-  //     key: "actions",
-  //     sortable: false,
-  //     align: "end",
-  //     width: "150px",
-  //   },
-  // ],
-  // attributes: {
-  //   itemTitle: "title",
-  // },
-  // formFields: [
-  //   {
-  //     key: "first_name",
-  //     attributes: {
-  //       label: t("words.fields.first_name"),
-  //     },
-  //     type: 'text',
-  //     // rules: [requiredRule(t("rules.required"))],
-  //     sizes: {
-  //       cols: 12,
-  //       sm: 6,
-  //     },
-  //   },
-  //   {
-  //     key: "last_name",
-  //     attributes: {
-  //       label: t("words.fields.last_name"),
-  //     },
-  //     type: 'text',
-  //     // rules: [requiredRule(t("rules.required"))],
-  //     sizes: {
-  //       cols: 12,
-  //       sm: 6,
-  //     },
-  //   },
-  //   {
-  //     key: "middle_name",
-  //     attributes: {
-  //       label: t("words.fields.middle_name"),
-  //     },
-  //     type: 'text',
-  //     sizes: {
-  //       cols: 12,
-  //       sm: 6,
-  //     },
-  //   },
-  //   {
-  //     key: "password",
-  //     attributes: {
-  //       label: t("words.password"),
-  //     },
-  //     type: 'text',
-  //     // rules: [requiredRule(t("rules.required"))],
-  //     sizes: {
-  //       cols: 12,
-  //       sm: 6,
-  //     },
-  //   },
-  //   {
-  //     key: "phone",
-  //     attributes: {
-  //       disabled_prefix: true,
-  //     },
-  //     type: "phone-prefix",
-  //     sizes: {
-  //       cols: 12,
-  //       sm: 6,
-  //     },
-  //   },
-  //   {
-  //     key: "email",
-  //     attributes: {
-  //       label: t("words.fields.email"),
-  //     },
-  //     type: 'text',
-  //     sizes: {
-  //       cols: 12,
-  //       sm: 6,
-  //     },
-  //   },
-  //   {
-  //     key: "birth_date",
-  //
-  //     type: 'date',
-  //     attributes: {
-  //       max: "2999-12-31",
-  //       label: t("words.fields.birth_date"),
-  //     },
-  //     sizes: {
-  //       cols: 12,
-  //       sm: 6,
-  //     },
-  //   },
-  //   {
-  //     key: "status",
-  //     attributes: {
-  //       label: t("words.fields.activity"),
-  //     },
-  //     type: 'checkbox',
-  //     sizes: {
-  //       cols: 12,
-  //       md: 3,
-  //       sm: 6,
-  //     },
-  //   },
-  // ],
+  form_fields: [
+    {
+      type: FormTypes.text,
+      key: 'first_name',
+      attributes: {
+        label: "words.fields.first_name",
+      },
+      sizes: {
+        cols: 12,
+        sm: 6,
+      }
+    },
+    {
+      type: FormTypes.text,
+      key: 'last_name',
+      attributes: {
+        label: "words.fields.last_name",
+      },
+      sizes: {
+        cols: 12,
+        sm: 6,
+      }
+    },
+  ]
 });
 </script>

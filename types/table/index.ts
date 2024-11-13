@@ -8,7 +8,13 @@ export interface header {
     align?: header_align,
 }
 
+export type PaginationOption = number | {
+    title: string,
+    value: number,
+}
 
 export type TableProps = {
     headers: header[],
+    pagination_options?: PaginationOption[]
 }
+

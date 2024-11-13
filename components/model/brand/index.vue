@@ -12,6 +12,12 @@ const model = reactive<ListProps>({
   table: {
     headers: [
       {
+        title: 'ID',
+        align: 'start',
+        sortable: false,
+        key: 'id',
+      },
+      {
         title: 'Название',
         align: 'start',
         sortable: false,
@@ -19,7 +25,7 @@ const model = reactive<ListProps>({
       },
       {
         title: 'Описание',
-        align: 'start',
+        align: 'end',
         sortable: false,
         key: 'description',
       },

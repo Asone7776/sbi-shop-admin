@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar prominent name="app-bar" class="px-4" color="primary" density="default">
+    <v-app-bar flat prominent name="app-bar" class="px-4" color="primary" density="default">
       <v-app-bar-nav-icon :active="sDrawer" @click="sDrawer = !sDrawer"/>
     </v-app-bar>
     <v-navigation-drawer v-model="sDrawer"

@@ -19,7 +19,7 @@ export default defineNuxtPlugin((app) => {
         },
         defaults: {
             VCard: {
-                rounded: "xl",
+                rounded: "lg",
             },
             VTextField: {
                 variant: "outlined",

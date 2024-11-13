@@ -21,8 +21,6 @@ export const useModelApi = () => {
     };
 
 
-    const loading = ref(false);
-
     const modelIndex = (
         model: Models,
         params: Record<string, any> = {},
@@ -132,7 +130,6 @@ export const useModelApi = () => {
         custom_url?: string,
         options?: Record<string, any>,
     ) => {
-        loading.value = true;
         const modelConfig = (
             models[model] ? models[model] : model
         ) as ModelConfig;
@@ -192,7 +189,12 @@ export const useModelApi = () => {
             params,
         );
     };
-
+    const currentModelTitle = (model: Models) => {
+        const modelConfig = (
+            models[model] ? models[model] : model
+        ) as ModelConfig;
+        return modelConfig.name;
+    }
     return {
         modelIndex,
         modelShow,
@@ -201,6 +203,6 @@ export const useModelApi = () => {
         modelUpdate,
         modelRemoveMedia,
         updateStatus,
-        loading,
+        currentModelTitle
     };
 };

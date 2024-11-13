@@ -27,15 +27,11 @@ export default defineNuxtPlugin((nuxtApp) => {
             }
             // headers['ori']
         },
-        async onResponseError({response}) {
-            if (response.status === 401) {
-                signOut();
-            }
-        }
     })
     return {
         provide: {
-            api
+            api,
+            signOut
         }
     }
 })

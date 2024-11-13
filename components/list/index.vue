@@ -1,14 +1,27 @@
 <template>
-  <table-crud v-bind="{...props.table,meta:data?.meta,query}" :data="data?.data" @reload="updateRoute"/>
+  <table-crud v-bind="{...props.table,total:data?.meta?.total,query}" :loading="loading" :data="data?.data"
+              @reload="updateRoute">
+    <template v-slot:top>
+      <list-components-toolbar :title="currentModelTitle(props.model)">
+        <template #actions>
+          <v-btn-group class="mr-5" divided>
+            <crud-modal-add v-if="has_add" @refresh="refresh"/>
+            <v-btn v-if="has_refresh"  icon="mdi-refresh" @click.prevent="refresh"/>
+          </v-btn-group>
+        </template>
+      </list-components-toolbar>
+    </template>
+  </table-crud>
 </template>
 <script setup lang="ts">
 import type {TableProps} from "~/types/table";
 import {Models} from "~/types/models";
+import type {FormFields} from "~/types/form";
 import {useModelApi} from "~/composables/useModelApi";
 
 const router = useRouter();
 const route = useRoute();
-const {modelIndex} = useModelApi();
+const {modelIndex, currentModelTitle} = useModelApi();
 
 const props = defineProps({
   model: {
@@ -32,8 +45,18 @@ const props = defineProps({
   has_add: {
     type: Boolean,
     required: false,
-    default: false
+    default: true
   },
+  has_refresh: {
+    type: Boolean,
+    required: false,
+    default: true
+  },
+  form_fields: {
+    type: Array as PropType<FormFields>,
+    required: false,
+    default: []
+  }
 });
 
 const query = reactive<any>({
@@ -42,8 +65,10 @@ const query = reactive<any>({
   ...props.params,
 });
 
-const {data} = await modelIndex(props.model, query);
-
+const {data, refresh, status} = await modelIndex(props.model, query);
+const loading = computed(() => {
+  return status.value === 'pending';
+});
 const updateRoute = (data: any) => {
   query.page = data?.page;
   query.perPage = data?.itemsPerPage;
