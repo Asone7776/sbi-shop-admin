@@ -16,7 +16,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         onRequest({request, options, error}) {
             const {token} = useToken();
             if (token.value) {
-                const headers = options.headers ||= {}
+                const headers:Headers = options.headers ||= {}
                 if (Array.isArray(headers)) {
                     headers.push(['Authorization', `Bearer ${token.value}`])
                 } else if (headers instanceof Headers) {

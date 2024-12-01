@@ -9,14 +9,19 @@ import {Models} from "~/types/models";
 
 
 export const useModelApi = () => {
+    const app = useNuxtApp();
     const models: Record<Models, ModelConfig> = {
         user: {
             url: "/admin/users",
             name: "Пользователи",
         },
         brand: {
-            url: "/admin/brands",
+            url: "/admin/product-brands",
             name: "Бренды",
+        },
+        news: {
+            url: "/admin/news",
+            name: "Новости",
         },
     };
 
@@ -59,27 +64,29 @@ export const useModelApi = () => {
         model: Models,
         id: any = null,
         params: Record<string, any> = {},
+        options: Record<string, any> = {},
     ) => {
-        return makeRequest(
-            model,
-            `modelDestroy-${model}`,
-            "DELETE",
-            `/${id}`,
-            null,
-            null,
-            params,
-        );
+        const modelConfig = (
+            models[model] ? models[model] : model
+        ) as ModelConfig;
+        return app.$api(`${modelConfig?.url}/${id}`, {
+            method: "DELETE",
+            query: {
+                ...params
+            },
+            ...options
+        });
     };
 
     const modelStore = async (
         model: Models,
         fields: any[] = [],
         data: Record<string, any> = {},
+        options: Record<string, any> = {},
         params: Record<string, any> = {},
     ) => {
         //const headers = { 'Content-Type': 'multipart/form-data' };
         const headers = {};
-
         return makeRequest(
             model,
             `modelStore-${model}`,
@@ -88,6 +95,8 @@ export const useModelApi = () => {
             data,
             headers,
             params,
+            undefined,
+            options,
         );
     };
 
@@ -133,7 +142,7 @@ export const useModelApi = () => {
         const modelConfig = (
             models[model] ? models[model] : model
         ) as ModelConfig;
-        const {error, ...rest} = await useAPI<T>(
+        const {error, ...rest} = useAPI<T>(
             `${changeUrl(
                 custom_url ? custom_url + urlParams : modelConfig?.url + urlParams,
                 query
@@ -195,6 +204,12 @@ export const useModelApi = () => {
         ) as ModelConfig;
         return modelConfig.name;
     }
+    const currentModelUrl = (model: Models) => {
+        const modelConfig = (
+            models[model] ? models[model] : model
+        ) as ModelConfig;
+        return modelConfig.url;
+    }
     return {
         modelIndex,
         modelShow,
@@ -203,6 +218,7 @@ export const useModelApi = () => {
         modelUpdate,
         modelRemoveMedia,
         updateStatus,
-        currentModelTitle
+        currentModelTitle,
+        currentModelUrl
     };
 };

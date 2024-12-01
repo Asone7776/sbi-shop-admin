@@ -1,14 +1,14 @@
 <template>
   <v-row>
-    <template v-for="(field, key) in formFields"
+    <template v-for="(field, key) in form_fields"
               :key="key"
     >
       <v-col
           :cols="field?.sizes?.cols"
           :md="field?.sizes?.md"
           :sm="field?.sizes?.sm"
-          v-show="field.type !== FormTypes.hidden && !field?.attributes?.is_hidden"
-          :class="field?.attributes?.no_padding ? 'pa-0' : ''"
+          v-show="field.type !== FieldTypes.hidden && !field?.attributes?.is_hidden"
+          :class="field?.attributes?.no_padding ? 'pa-0 pb-0' : 'pb-0'"
       >
         <component
             :is="`crud-fields-types-${field.type}`"
@@ -22,7 +22,7 @@
             :items="field?.items"
             :localeKey="field?.localeKey"
             :autofocus="field?.autofocus"
-            :rules="field?.rules"
+            :rules="field?.attributes?.rules"
             :attributes="{
             ...field?.attributes,
             loading: loading,
@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import {type FormFields, FormTypes} from "~/types/form";
+import {FieldTypes, type FormFields} from "~/types/form";
 import {Models} from "~/types/models";
 
 const props = defineProps({
@@ -54,7 +54,7 @@ const props = defineProps({
     default: () => {
     },
   },
-  formFields: {
+  form_fields: {
     type: Array as PropType<FormFields>,
     required: true,
   },

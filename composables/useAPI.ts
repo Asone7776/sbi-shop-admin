@@ -4,7 +4,7 @@ export function useAPI<T>(
     url: string | (() => string),
     options?: UseFetchOptions<T>,
 ) {
-    return useLazyFetch(url, {
+    return useFetch(url, {
         ...options,
         $fetch: useNuxtApp().$api,
         onResponseError: async (context) => {

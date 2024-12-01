@@ -31,9 +31,13 @@ const sidebarItem: menu[] = [
         title: "Бренды",
         icon: UsersIcon,
         to: "/admin/brands",
+    },
+    {
+        title: "Новости",
+        icon: UsersIcon,
+        to: "/admin/news",
 
     },
-
 ];
 
 export default sidebarItem;

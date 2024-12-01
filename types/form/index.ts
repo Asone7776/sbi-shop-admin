@@ -1,4 +1,6 @@
-export enum FormTypes {
+import type {Models} from "~/types/models";
+
+export enum FieldTypes {
     text = 'text',
     select = 'select',
     autocomplete = 'autocomplete',
@@ -21,6 +23,14 @@ export interface FormFieldAttributes {
     itemValue?: string;
     no_padding?: boolean
     is_hidden?: boolean;
+    object?: boolean;
+    model?: Models,
+    items?: selectItem[];
+    mask?: string;
+    localeString?: string;
+    autofocus?: boolean;
+    rules?: Function[],
+    clearable?: boolean,
 }
 
 export type FormFieldSize = {
@@ -31,8 +41,13 @@ export type FormFieldSize = {
     xl?: number;
 }
 
+interface selectItem {
+    value: string;
+    name: string;
+}
+
 export interface FormField {
-    type: FormTypes;
+    type: FieldTypes;
     key: string;
     attributes?: FormFieldAttributes;
     defaultValue?: any;

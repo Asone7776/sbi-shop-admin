@@ -1,10 +1,11 @@
 <template>
   <v-locale-provider>
     <v-app>
+      <Page/>
       <LayoutMain/>
       <v-main>
         <v-container fluid class="page-wrapper bg-background px-sm-5 px-4 rounded-lg">
-            <slot/>
+          <slot/>
         </v-container>
       </v-main>
     </v-app>

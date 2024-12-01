@@ -1,5 +1,11 @@
 export type header_align = ("start" | "end" | "center") | undefined;
 
+export enum TablePage {
+    ModelBrand = 'ModelBrand',
+    ModelNews = 'ModelNews',
+    ModelUser = 'ModelUser',
+}
+
 export interface header {
     title?: string,
     key?: string,
@@ -15,6 +21,9 @@ export type PaginationOption = number | {
 
 export type TableProps = {
     headers: header[],
-    pagination_options?: PaginationOption[]
+    pagination_options?: PaginationOption[],
+    has_delete?: boolean,
+    show_link?: boolean,
+    page?: TablePage
 }
 

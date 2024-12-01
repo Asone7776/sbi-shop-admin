@@ -7,36 +7,26 @@ import {Models} from "~/types/models";
 import {FieldTypes} from "~/types/form";
 import {TablePage} from "~/types/table";
 
-const {t} = useI18n();
 const model = reactive<ListProps>({
-  model: Models.brand,
+  model: Models.news,
   has_search: true,
   has_add: true,
-  params: {
-    // 'test': 'blet'
-  },
   table: {
     show_link: true,
-    page: TablePage.ModelBrand,
+    page: TablePage.ModelNews,
     headers: [
       {
         title: 'ID',
         align: 'start',
         sortable: false,
         key: 'id',
-        width: '0',
+        width: '0'
       },
       {
         title: 'Название',
         align: 'start',
         sortable: false,
-        key: 'name',
-      },
-      {
-        title: 'Описание',
-        align: 'end',
-        sortable: false,
-        key: 'description',
+        key: 'title',
       },
       {
         title: '',
@@ -48,29 +38,24 @@ const model = reactive<ListProps>({
   },
   form_fields: [
     {
-      key: 'name',
+      key: 'title',
       type: FieldTypes.text,
       attributes: {
         label: "Название",
-        rules: [requiredRule(t("rules.required"))],
-        clearable: true
       },
       sizes: {
         cols: 12,
       }
-    },
-    {
-      key: 'description',
+    }, {
+      key: 'content',
       type: FieldTypes.textarea,
       attributes: {
-        label: "Описание",
-        clearable: true
+        label: "Контент",
       },
       sizes: {
         cols: 12,
       }
     }
-
   ]
 });
 </script>

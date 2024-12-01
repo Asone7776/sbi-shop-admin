@@ -11,6 +11,24 @@
       @update:options="loadItems"
       :items-per-page-options="pagination_options"
   >
+    <template v-slot:item.id="props">
+      <v-btn
+          v-if="show_link && page"
+          block
+          @click="$cardOpen(page,props.item.id,{})"
+          rounded="sm"
+          variant="tonal"
+          color="primary"
+          prepend-icon="mdi-login-variant"
+          class="mb-1"
+      >
+        {{ props.item?.id }}
+      </v-btn>
+      <span v-else> {{ props.item?.id }}</span>
+    </template>
+    <template v-slot:item.actions="{ item }">
+      <TableActionsDelete v-if="has_delete && item.id" :model="model" :id="item.id" @reload="$emit('after-delete')"/>
+    </template>
     <template v-slot:top>
       <slot name="top"></slot>
     </template>
@@ -20,13 +38,34 @@
 import {useDisplay} from "vuetify";
 import type {meta} from "~/types/list";
 import type {header, PaginationOption} from "~/types/table";
+import {Models} from "~/types/models";
+import {TablePage} from "~/types/table";
 
-const emits = defineEmits(['reload']);
+const emits = defineEmits(['reload', 'after-delete']);
 const {mobile} = useDisplay();
 defineProps({
+  model: {
+    type: String as PropType<Models>,
+    required: true,
+  },
+  page: {
+    type: String as PropType<TablePage>,
+    required: false,
+    default: null
+  },
   headers: {
     type: Array as PropType<header[]>,
     required: true,
+  },
+  has_delete: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
+  show_link: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
   pagination_options: {
     type: Array as PropType<PaginationOption[]>,
