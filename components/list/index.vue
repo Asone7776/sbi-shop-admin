@@ -36,7 +36,7 @@ const props = defineProps({
     required: true,
   },
   params: {
-    type: Object as PropType<any>,
+    type: Object as PropType<Record<string, any>>,
     required: false,
     default: {}
   },
@@ -67,7 +67,6 @@ const props = defineProps({
   }
 });
 
-// Инициализация query с учетом параметров из route
 const query = reactive<any>({
   ...route.query,
   page: route.query?.page ? Number(route.query?.page) : 1,
@@ -75,7 +74,6 @@ const query = reactive<any>({
   ...props?.params,
 });
 
-// Функция для фильтрации параметров (удаляем _card)
 const filteredQuery = computed(() => {
   const {_card, ...rest} = query;
   return rest;
